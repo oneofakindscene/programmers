@@ -1,0 +1,12 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+## 다음과 같은 확장자는 전체 무시
+## *.text
+*.DS_store
+*.iml
+
+## 폴더 무시
+out/
+.idea/

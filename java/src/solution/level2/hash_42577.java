@@ -7,8 +7,12 @@ import java.util.Arrays;
 public class hash_42577 {
     public static boolean solution(String[] phone_book) {
         // 방법1
-        Arrays.sort(phone_book); // 짧은게 접두사가 되기때문에 sort를 하는 것
+        Arrays.sort(phone_book); // sort하면 가장 앞자리 숫자 기준으로 정렬함 "111", "1111" 중에서는 "111"이 먼저 나옴
+                                 // 따라서, 접두사로 쓰인다면 접두사로 쓰이는 값이 앞에 올 수 밖에없음
+//        System.out.println(Arrays.toString(phone_book));
         for(int i=0; i<phone_book.length-1; i++) {
+            // (핵심포인트!) 접두사인 숫자와 접두사를 사용하는 숫자는 idx 1개 차이로 정렬되어있을 수 밖에없음
+                // 따라서, for문돌면서 바로 뒤에 있는지만 확인하면 됨
             if(phone_book[i+1].startsWith(phone_book[i])){
                 return false;
             }

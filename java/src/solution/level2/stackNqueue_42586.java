@@ -13,20 +13,24 @@ import java.util.*;
     // add() : Queue의 offer()처럼 element 집어넣을때 사용
 public class stackNqueue_42586 {
     public static int[] solution(int[] progresses, int[] speeds) {
-        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> q = new LinkedList<>(); // 조건문에서 empty(), peek(), size() 등을 사용하기 위해 필요
         List<Integer> answerList = new ArrayList<>();
-        for (int i = 0; i < speeds.length; i++){
-            double remain = (double) (100-progresses[i]) / speeds[i];
-            int workday = (int) Math.ceil(remain);
-            if (!q.isEmpty() && q.peek() < workday){
-                answerList.add(q.size());
+
+        for (int i = 0; i < speeds.length; i++) {
+            double remain = (100 - progresses[i]) / (double) speeds[i];
+            int workday = (int) Math.ceil(remain); //
+            // 아래 if문은 q가 안비어있고, q 맨 마지막에 들어온 값이 date값보다 작을때 실행됨
+            // q.peek() : 직전의 workday값이 담겨있음
+            if (!q.isEmpty() && q.peek() < workday) { // 이 로직에 걸리면 배포되는거
+                answerList.add(q.size()); // 배포될때 몇개가 배포되는지 answerList에 넣어줌
                 q.clear();
             }
-            q.offer(workday);
+            q.offer(workday); // 비우지 않고 쌓아주는 경우 => 나중에 같이 배포하기 위해
         }
-        answerList.add(q.size());
+        answerList.add(q.size()); // 맨마지막꺼는 여기서 배포한 것으로 처리해줘야함
+
         int[] answer = new int[answerList.size()];
-        for(int i = 0; i<answer.length; i++){
+        for (int i = 0; i < answer.length; i++) {
             answer[i] = answerList.get(i);
         }
         return answer;

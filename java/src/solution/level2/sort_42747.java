@@ -20,7 +20,8 @@ public class sort_42747 {
         return answer;
     }
     public static void main(String[] args){
-        int[] citations = {3, 0, 6, 1, 5};
+//        int[] citations = {3, 0, 6, 1, 5}; // 3이 나와야 정답
+        int[] citations = {100, 105, 103, 103, 102}; // 5가 나와야 정답
         Integer answer = solution(citations);
         System.out.println(answer);
     }
